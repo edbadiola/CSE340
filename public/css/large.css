@@ -1,0 +1,233 @@
+/* Large screens only */
+@media (min-width: 768px) {
+
+    body {
+        position: relative;
+        /* needed for ::before */
+        padding-top: 2rem;
+        background: none;
+        /* remove direct bg */
+    }
+
+    body::before {
+        content: "";
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: url("/images/site/checkerboard.jpg");
+        background-repeat: repeat;
+        background-size: auto;
+        filter: blur(1px);
+        z-index: -1;
+        /* keep it behind content */
+    }
+
+    /* Keep the white card for the rest */
+    header,
+    main,
+    footer {
+        background-color: white;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 1rem 2rem;
+        border: none;
+        outline: none;
+    
+    }
+
+    /* Header rounded top */
+    header {
+        border-top-left-radius: 12px;
+        border-top-right-radius: 12px;
+        color: black;
+    }
+
+    nav {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0.75rem 2rem;
+        border-radius: 0;
+        box-shadow: none;
+    }
+
+    nav,
+    nav ul,
+    nav li,
+    nav a {
+        background-color: #1f1f1f !important;
+        color: white !important; /* force white text */
+    }
+    
+    nav a {
+        display: block;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-weight: bold;
+    }
+
+    nav ul {
+        list-style: none;
+        margin: 0 !important;
+        padding: 0 !important;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+    }
+
+    nav a:hover {
+        text-decoration: underline;
+    }
+
+    footer {
+        border-bottom-left-radius: 12px;
+        border-bottom-right-radius: 12px;
+        margin-bottom: 2rem;
+        color: black;
+    }
+
+    
+
+    /* Hero Section */
+    .hero .car {
+        display: flex;
+        align-items: center;
+        gap: 2rem;
+        text-align: left;
+        background-image: url("/images/vehicles/delorean.jpg");
+        background-size: contain;
+        /* car won’t be cropped */
+        background-repeat: no-repeat;
+        background-position: center;
+        min-height: 400px;
+        /* smaller height */
+    }
+
+    .hero .car img {
+        visibility: hidden;
+        width: 0;
+        height: 0;
+    }
+
+    .car-info {
+        background-color: rgba(46, 46, 46, 0.6); /* dark transparent background */
+        color: white; /* make text white */
+        font-size: large;
+        padding: 1rem;
+        border-radius: 0.5rem;
+    }
+
+    .car-info h2 {
+        color: white !important;
+    }   
+
+    .car-info ul{
+        padding-left: 2rem;
+    }
+
+        .reviews {
+            text-align: center;
+            /* centers the heading and text inside */
+            padding: 1rem;
+            /* optional dark background */
+            color: #1f1f1f;
+            /* text color */
+            padding-top: 5rem;
+            
+            
+        }
+    
+        .reviews h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+    
+        .reviews ul {
+            list-style: none;
+            /* removes bullets */
+            padding: 0;
+            margin: 0 auto;
+            /* centers the list */
+            max-width: 500px;
+            /* optional: keeps list from being too wide */
+            
+        }
+    
+        .reviews li {
+            margin-bottom: 0.75rem;
+            font-size: large;
+            font-weight: 600;
+            font-style: italic;
+        }
+
+        .upgrades {
+            padding: 2rem;
+            /* optional dark background for section */
+            color: #1f1f1f;
+        }
+    
+        .upgrades h2 {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+        }
+    
+        .upgrade-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+        }
+    
+        .upgrade {
+            background-color: rgb(34, 34, 34);
+            /* black card */
+            padding: 1rem;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+    
+        .upgrade img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 0 auto 0.5rem auto;
+            /* centers the image and adds spacing */
+            border-radius: 5px;
+            /* optional rounded corners on image */
+        }
+    
+        .upgrade a {
+            display: block;
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 0.5rem;
+        }
+    
+        .upgrade:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.7);
+        }
+
+    .account {
+        background-color: #1f1f1f;
+        /* black background */
+        padding: 0.5rem 1rem;
+        border-radius: 8px;
+        display: inline-block;
+    }
+
+    .account a {
+        color: #fff;
+        /* white text */
+        text-decoration: none;
+        font-weight: bold;
+    }
+
+    .account a:hover {
+        text-decoration: underline;
+    }
+}

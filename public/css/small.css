@@ -1,0 +1,109 @@
+/* Base mobile styling */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    line-height: 1.5;
+    background-color: #f7f7f7;
+    color: #222;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem;
+    background-color: #222;
+    color: #fff;
+}
+
+header .logo {
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+header .account a {
+    color: #fff;
+    text-decoration: none;
+}
+
+nav ul {
+    display: flex;
+    justify-content: space-around;
+    list-style: none;
+    padding: 0.5rem 0;
+    background-color: #333;
+    margin: 0;
+}
+
+nav a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+main {
+    padding: 1rem;
+}
+
+.hero .car {
+    text-align: center;
+}
+
+.hero img {
+    max-width: 100%;
+    height: auto;
+}
+
+.car-info h2 {
+    color: #007acc;
+}
+
+.car-info ul {
+    list-style-type: disc;
+    padding-left: 1.5rem;
+    text-align: left;
+}
+
+.car-info button {
+    background-color: #007acc;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    margin-top: 0.5rem;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.reviews ul {
+    padding-left: 1rem;
+}
+
+.upgrades {
+    margin-top: 1rem;
+}
+
+.upgrade-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem;
+}
+
+.upgrade img {
+    width: 25%;
+    height: auto;
+}
+
+.upgrade a {
+    display: block;
+    text-align: center;
+    margin-top: 0.5rem;
+    color: #007acc;
+    text-decoration: none;
+}
+
+footer {
+    text-align: center;
+    padding: 1rem;
+    background-color: #222;
+    color: #fff;
+    margin-top: 1rem;
+}
