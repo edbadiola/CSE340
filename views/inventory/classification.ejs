@@ -1,9 +1,11 @@
 <% if (title) { %>
-    <h1>
+    <h1 class="inv-title">
         <%= title %>
     </h1>
     <% } else { res.redirect('/') } %>
 
-<%# messages() %>
+        <div class="inv-grid">
+            <%- grid %>
+        </div>
 
-<%- grid %>
+    

@@ -107,3 +107,49 @@ footer {
     color: #fff;
     margin-top: 1rem;
 }
+
+/* ===== Inventory Classification Page ===== */
+.inv-title {
+    text-align: center;
+    margin-bottom: 1rem;
+    font-size: 1.8rem;
+    color: #007acc;
+}
+
+.inv-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    /* two columns on small screens */
+    gap: 1rem;
+    padding: 1rem;
+}
+
+.inv-grid .inv-card {
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 1rem;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease;
+}
+
+.inv-grid .inv-card:hover {
+    transform: translateY(-4px);
+}
+
+.inv-grid .inv-card img {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 0.5rem;
+}
+
+.inv-grid .inv-card h3 {
+    margin: 0.5rem 0;
+    color: #333;
+}
+
+.inv-grid .inv-card p {
+    margin: 0;
+    color: #555;
+}
