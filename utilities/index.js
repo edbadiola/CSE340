@@ -57,6 +57,76 @@ Util.buildClassificationGrid = async function(data){
   return grid
 }
 
+// utilities/index.js
+
+function formatCurrency(amount) {
+  return new Intl.NumberFormat("en-US", { style: "currency", currency: "USD" }).format(amount)
+}
+
+function formatNumber(num) {
+  return new Intl.NumberFormat("en-US").format(Number(num || 0))
+}
+
+/**
+ * buildVehicleDetail(vehicle)
+ * Accepts the vehicle object (row from DB) and returns an HTML string
+ * Uses full-size image if DB gives a thumbnail name (tries to remove 'tn-' prefix).
+ */
+function buildVehicleDetail(vehicle) {
+  if (!vehicle) return "<p>No vehicle data provided.</p>"
+
+  // Determine image path: prefer full-size image. Try to remove tn- prefix if present.
+  let imgPath = vehicle.inv_image || ""
+  // If db stored just a filename, prefix the images folder
+  if (imgPath && !imgPath.startsWith("/")) {
+    imgPath = `/images/vehicles/${imgPath}`
+  }
+  // Remove 'tn-' prefix from filename if present (common thumbnail pattern)
+  const parts = imgPath.split("/")
+  const fname = parts.pop()
+  const cleanedFname = fname.startsWith("tn-") ? fname.replace("tn-", "") : fname
+  parts.push(cleanedFname)
+  imgPath = parts.join("/")
+
+  const price = formatCurrency(vehicle.inv_price)
+  const miles = formatNumber(vehicle.inv_miles)
+
+  return `
+    <div class="vehicle-detail">
+      <figure class="vehicle-image">
+        <img src="${imgPath}" alt="${vehicle.inv_year} ${vehicle.inv_make} ${vehicle.inv_model}" loading="lazy">
+      </figure>
+
+      <div class="vehicle-info">
+        <h2>${vehicle.inv_year} ${vehicle.inv_make} ${vehicle.inv_model}</h2>
+
+        <p class="vehicle-price"><strong>Price:</strong> ${price}</p>
+        <p class="vehicle-mileage"><strong>Mileage:</strong> ${miles} miles</p>
+
+        <p class="vehicle-basic">
+          <strong>Color:</strong> ${vehicle.inv_color || "N/A"} |
+          <strong>Transmission:</strong> ${vehicle.inv_transmission || "N/A"}
+        </p>
+
+        <section class="vehicle-description">
+          <h3>Overview</h3>
+          <p>${vehicle.inv_description || "No description available."}</p>
+        </section>
+
+        <section class="vehicle-details">
+          <h4>Details</h4>
+          <ul>
+            <li><strong>Make:</strong> ${vehicle.inv_make}</li>
+            <li><strong>Model:</strong> ${vehicle.inv_model}</li>
+            <li><strong>Year:</strong> ${vehicle.inv_year}</li>
+            <li><strong>VIN:</strong> ${vehicle.inv_vin || "N/A"}</li>
+          </ul>
+        </section>
+      </div>
+    </div>
+  `
+}
+
 
 /* ****************************************
  * Middleware For Handling Errors
@@ -65,4 +135,11 @@ Util.buildClassificationGrid = async function(data){
  **************************************** */
 Util.handleErrors = fn => (req, res, next) => Promise.resolve(fn(req, res, next)).catch(next)
 
-module.exports = Util
+module.exports = {
+  handleErrors: Util.handleErrors,
+  getNav: Util.getNav,
+  buildClassificationGrid: Util.buildClassificationGrid,
+  formatCurrency,
+  formatNumber,
+  buildVehicleDetail
+}

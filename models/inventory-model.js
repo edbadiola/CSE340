@@ -25,4 +25,16 @@ async function getInventoryByClassificationId(classification_id) {
   }
 }
 
-module.exports = {getClassifications, getInventoryByClassificationId};
+// models/inventory-model.js
+async function getVehicleByInvId(inv_id) {
+  try {
+    const sql = "SELECT * FROM inventory WHERE inv_id = $1"
+    const result = await pool.query(sql, [inv_id])
+    return result.rows[0] // returns one vehicle object or undefined
+  } catch (error) {
+    console.error("getVehicleByInvId error:", error)
+    throw error
+  }
+}
+
+module.exports = {getClassifications, getInventoryByClassificationId, getVehicleByInvId};
