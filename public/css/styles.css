@@ -4,3 +4,68 @@
 *:after {
   box-sizing: border-box;
 }
+
+.account-login {
+  max-width: 420px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.account-login h1 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.login-form label {
+  font-weight: 600;
+}
+
+.login-form input {
+  padding: 0.6rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.login-form button {
+  background: #2a72d4;
+  color: #fff;
+  padding: 0.7rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.login-form button:hover {
+  background: #1e5cb3;
+}
+
+.flash {
+  padding: 0.75rem 1rem;
+  margin-bottom: 1rem;
+  border-radius: 4px;
+}
+
+.flash-error {
+  background: #ffe2e2;
+  color: #a00;
+}
+
+.flash-success {
+  background: #e6ffed;
+  color: #0a0;
+}
+
+.register-link {
+  text-align: center;
+  margin-top: 1rem;
+}
