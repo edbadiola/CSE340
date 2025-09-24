@@ -16,5 +16,7 @@ router.get("/login", utilities.handleErrors(accountController.buildLogin))
 // registration view
 router.get("/register", utilities.handleErrors(accountController.buildRegister))
 
+router.post('/register', utilities.handleErrors(accountController.registerAccount))
+
 // Export router so server.js can use it
 module.exports = router

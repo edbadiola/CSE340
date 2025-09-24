@@ -14,23 +14,23 @@
             </div>
             <% } %>
 
-                <form class="register-form" action="/account/register" method="POST" novalidate>
-                    <!-- Data trail technique: re-populate previous input values -->
-                    <label for="first_name">First Name</label>
-                    <input type="text" id="first_name" name="first_name" value="<%= locals.first_name || '' %>"
+                <form class="register-form" action="/account/register" method="POST">
+                    <label for="account_firstname">First Name</label>
+                    <input type="text" id="account_firstname" name="account_firstname" value="<%= locals.account_firstname || '' %>"
                         required />
-
-                    <label for="last_name">Last Name</label>
-                    <input type="text" id="last_name" name="last_name" value="<%= locals.last_name || '' %>" required />
-
-                    <label for="email">Email Address</label>
-                    <input type="email" id="email" name="email" value="<%= locals.email || '' %>"
+                    
+                    <label for="account_lastname">Last Name</label>
+                    <input type="text" id="account_lastname" name="account_lastname" value="<%= locals.account_lastname || '' %>"
+                        required />
+                    
+                    <label for="account_email">Email Address</label>
+                    <input type="email" id="account_email" name="account_email" value="<%= locals.account_email || '' %>"
                         placeholder="you@example.com" required />
-
-                    <label for="password">Password</label>
+                    
+                    <label for="account_password">Password</label>
                     <div class="password-wrapper">
-                        <input type="password" id="password" name="password" placeholder="Enter a strong password"
-                            required minlength="12" />
+                        <input type="password" id="account_password" name="account_password" placeholder="Enter a strong password" required
+                            minlength="12" />
                         <button type="button" id="togglePassword" aria-label="Show or hide password">Show</button>
                     </div>
 
@@ -47,7 +47,7 @@
     // toggle password visibility
     document.addEventListener('DOMContentLoaded', () => {
         const toggleBtn = document.getElementById('togglePassword');
-        const pwd = document.getElementById('password');
+        const pwd = document.getElementById('account_password');
         toggleBtn.addEventListener('click', () => {
             const isHidden = pwd.getAttribute('type') === 'password';
             pwd.setAttribute('type', isHidden ? 'text' : 'password');
