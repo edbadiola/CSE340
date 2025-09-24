@@ -1,30 +1,31 @@
+<main class="account-login">
+    <h1>
+        <%= title %>
+    </h1>
 
-
-    <main class="account-login">
-        <h1>
-            <%= title %>
-        </h1>
-
-        <!-- Flash message (if any) -->
-        <% if (messages && messages.error) { %>
-            <div class="flash flash-error">
-                <%= messages.error %>
+    <!-- Flash message (if any) -->
+    <% if (messages && messages.error) { %>
+        <div class="flash flash-error">
+            <%= messages.error %>
+        </div>
+        <% } else if (messages && messages.success) { %>
+            <div class="flash flash-success">
+                <%= messages.success %>
             </div>
-            <% } else if (messages && messages.success) { %>
-                <div class="flash flash-success">
-                    <%= messages.success %>
-                </div>
-                <% } %>
+            <% } %>
 
-                    <form class="login-form" action="/account/login" method="POST" novalidate>
-                        <label for="email">Email Address</label>
-                        <input type="email" id="email" name="email" placeholder="you@example.com" required />
+                <form class="login-form" action="/account/login" method="POST" novalidate>
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" placeholder="you@example.com" required />
 
-                        <label for="password">Password</label>
-                        <input type="password" id="password" name="password" placeholder="Enter your password"
-                            required />
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" placeholder="Enter your password" required />
 
-                        <button type="submit">Login</button>
-                    </form>
+                    <button type="submit">Login</button>
+                </form>
 
-    </main>
+                <p class="register-link">
+                    Don’t have an account?
+                    <a href="/account/register">Register here</a>
+                </p>
+</main>

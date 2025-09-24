@@ -11,10 +11,10 @@ const accountController = require("../controllers/accountController")
  *  GET Login View
  *  Path: /account/login  (the "/account" prefix is added in server.js)
  *****************/
-router.get(
-  "/login",
-  utilities.handleErrors(accountController.buildLogin)
-)
+router.get("/login", utilities.handleErrors(accountController.buildLogin))
+
+// registration view
+router.get("/register", utilities.handleErrors(accountController.buildRegister))
 
 // Export router so server.js can use it
 module.exports = router
