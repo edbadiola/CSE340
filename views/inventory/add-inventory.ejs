@@ -1,0 +1,84 @@
+<main id="add-inventory">
+    <h1>Add New Vehicle</h1>
+
+    <!-- Flash message -->
+    <% if (messages && messages.length) { %>
+        <div class="flash">
+            <% messages.forEach(m=> { %>
+                <p>
+                    <%= m %>
+                </p>
+                <% }) %>
+        </div>
+        <% } %>
+
+            <!-- Server validation errors -->
+            <% if (errors && errors.length) { %>
+                <div class="errors">
+                    <ul>
+                        <% errors.forEach(err=> { %>
+                            <li>
+                                <%= err.msg %>
+                            </li>
+                            <% }) %>
+                    </ul>
+                </div>
+                <% } %>
+
+                    <form id="addInventoryForm" action="/inv/add-inventory" method="POST" novalidate>
+                        <!-- Classification -->
+                        <label for="classification_id">Classification</label>
+                        <%- classificationList %>
+
+                            <!-- Make -->
+                            <label for="inv_make">Make</label>
+                            <input type="text" id="inv_make" name="inv_make" required pattern="^[A-Za-z0-9 ]+$"
+                                title="Letters, numbers and spaces only."
+                                value="<%= typeof inv_make !== 'undefined' ? inv_make : '' %>" />
+
+                            <!-- Model -->
+                            <label for="inv_model">Model</label>
+                            <input type="text" id="inv_model" name="inv_model" required pattern="^[A-Za-z0-9 ]+$"
+                                title="Letters, numbers and spaces only."
+                                value="<%= typeof inv_model !== 'undefined' ? inv_model : '' %>" />
+
+                            <!-- Year (text, 4 chars) -->
+                            <label for="inv_year">Year</label>
+                            <input type="text" id="inv_year" name="inv_year" required pattern="^\d{4}$"
+                                title="4-digit year" value="<%= typeof inv_year !== 'undefined' ? inv_year : '' %>" />
+
+                            <!-- Price (integer) -->
+                            <label for="inv_price">Price</label>
+                            <input type="number" id="inv_price" name="inv_price" required step="1" min="0"
+                                value="<%= typeof inv_price !== 'undefined' ? inv_price : '' %>" />
+
+                            <!-- Miles -->
+                            <label for="inv_miles">Miles</label>
+                            <input type="number" id="inv_miles" name="inv_miles" required min="0"
+                                value="<%= typeof inv_miles !== 'undefined' ? inv_miles : '' %>" />
+
+                            <!-- Color -->
+                            <label for="inv_color">Color</label>
+                            <input type="text" id="inv_color" name="inv_color" required
+                                value="<%= typeof inv_color !== 'undefined' ? inv_color : '' %>" />
+
+                            <!-- Image -->
+                            <label for="inv_image">Image Path</label>
+                            <input type="text" id="inv_image" name="inv_image"
+                                placeholder="/images/no-image-available.png"
+                                value="<%= typeof inv_image !== 'undefined' ? inv_image : '/images/no-image-available.png' %>" />
+
+                            <label for="inv_thumbnail">Thumbnail Path</label>
+                            <input type="text" id="inv_thumbnail" name="inv_thumbnail"
+                                placeholder="/images/no-image-available-tn.png"
+                                value="<%= typeof inv_thumbnail !== 'undefined' ? inv_thumbnail : '/images/no-image-available-tn.png' %>" />
+
+                            <!-- Description -->
+                            <label for="inv_description">Description</label>
+                            <textarea id="inv_description" name="inv_description" rows="6" required>
+      <%= typeof inv_description !== 'undefined' ? inv_description : '' %>
+    </textarea>
+
+                            <button type="submit">Add Vehicle</button>
+                    </form>
+</main>

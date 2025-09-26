@@ -1,0 +1,16 @@
+<main id="inv-management">
+    <% if (message && message.length) { %>
+        <div class="flash">
+            <%= message %>
+        </div>
+        <% } %>
+
+            <h1>Inventory Management</h1>
+
+            <p>
+                <a href="/inv/add-classification">Add New Classification</a>
+            </p>
+            <p>
+                <a href="/inv/add-inventory">Add New Inventory Item</a>
+            </p>
+</main>

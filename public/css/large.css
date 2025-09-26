@@ -430,3 +430,228 @@
     background: #d4edda;
     color: #155724;
 }
+
+
+/*management.ejs*/
+/* Container */
+#inv-management {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background-color: #f9f9f9;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    font-family: Arial, sans-serif;
+}
+
+/* Heading */
+#inv-management h1 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 1.5rem;
+}
+
+/* Paragraphs */
+#inv-management p {
+    text-align: center;
+    margin: 1rem 0;
+}
+
+/* Links / Buttons */
+#inv-management a {
+    display: inline-block;
+    padding: 0.6rem 1.2rem;
+    background-color: #007bff;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+}
+
+#inv-management a:hover {
+    background-color: #0056b3;
+}
+
+/* Flash message */
+.flash {
+    background-color: #ffefc1;
+    border: 1px solid #ffc107;
+    padding: 0.8rem 1rem;
+    border-radius: 6px;
+    text-align: center;
+    margin-bottom: 1.5rem;
+    color: #856404;
+}
+
+/* ===========================
+   Inventory Management Page
+   =========================== */
+#inv-management {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background-color: #f9f9f9;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    font-family: Arial, sans-serif;
+}
+
+#inv-management h1 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 1.5rem;
+}
+
+#inv-management .flash {
+    background-color: #ffefc1;
+    border: 1px solid #ffc107;
+    padding: 0.8rem 1rem;
+    border-radius: 6px;
+    text-align: center;
+    margin-bottom: 1.5rem;
+    color: #856404;
+}
+
+#inv-management p {
+    text-align: center;
+    margin: 1rem 0;
+}
+
+#inv-management a {
+    display: inline-block;
+    padding: 0.6rem 1.2rem;
+    background-color: #007bff;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+}
+
+#inv-management a:hover {
+    background-color: #0056b3;
+}
+
+/* ===========================
+   Add Classification Page
+   =========================== */
+#addClassificationForm {
+    max-width: 600px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background-color: #f9f9f9;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+}
+
+#addClassificationForm label {
+    margin: 0.5rem 0 0.2rem;
+    font-weight: bold;
+}
+
+#addClassificationForm input,
+#addClassificationForm button {
+    padding: 0.6rem;
+    margin-bottom: 1rem;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+}
+
+#addClassificationForm button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#addClassificationForm button:hover {
+    background-color: #0056b3;
+}
+
+#addClassificationForm .flash {
+    background-color: #ffefc1;
+    border: 1px solid #ffc107;
+    padding: 0.8rem 1rem;
+    border-radius: 6px;
+    text-align: center;
+    margin-bottom: 1rem;
+    color: #856404;
+}
+
+/* ===========================
+   Add Inventory Page
+   =========================== */
+#add-inventory {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background-color: #f9f9f9;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    font-family: Arial, sans-serif;
+}
+
+#add-inventory h1 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 1.5rem;
+}
+
+#add-inventory .flash {
+    background-color: #ffefc1;
+    border: 1px solid #ffc107;
+    padding: 0.8rem 1rem;
+    border-radius: 6px;
+    text-align: center;
+    margin-bottom: 1rem;
+    color: #856404;
+}
+
+#add-inventory .errors {
+    background-color: #f8d7da;
+    border: 1px solid #f5c2c7;
+    padding: 1rem;
+    border-radius: 6px;
+    margin-bottom: 1rem;
+    color: #842029;
+}
+
+#add-inventory form {
+    display: flex;
+    flex-direction: column;
+}
+
+#add-inventory label {
+    margin: 0.5rem 0 0.2rem;
+    font-weight: bold;
+}
+
+#add-inventory input,
+#add-inventory textarea,
+#add-inventory select,
+#add-inventory button {
+    padding: 0.6rem;
+    margin-bottom: 1rem;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-size: 1rem;
+}
+
+#add-inventory textarea {
+    resize: vertical;
+}
+
+#add-inventory button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#add-inventory button:hover {
+    background-color: #0056b3;
+}

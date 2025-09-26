@@ -128,6 +128,24 @@ function buildVehicleDetail(vehicle) {
 }
 
 
+/**
+ * buildClassificationList(selectedId)
+ *  Returns <select> HTML ng classifications, may option selected kung meron
+ */
+async function buildClassificationList(selectedId = null) {
+  const data = await invModel.getClassifications()
+  let list = `<select name="classification_id" id="classification_id" required>`
+  list += `<option value="">Select a Classification</option>`
+  data.rows.forEach(row => {
+    list += `<option value="${row.classification_id}"` +
+            (row.classification_id == selectedId ? " selected" : "") +
+            `>${row.classification_name}</option>`
+  })
+  list += `</select>`
+  return list
+}
+
+
 /* ****************************************
  * Middleware For Handling Errors
  * Wrap other function in this for 
@@ -141,5 +159,6 @@ module.exports = {
   buildClassificationGrid: Util.buildClassificationGrid,
   formatCurrency,
   formatNumber,
-  buildVehicleDetail
+  buildVehicleDetail,
+  buildClassificationList
 }

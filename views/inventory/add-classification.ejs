@@ -1,0 +1,18 @@
+<h1>Add New Classification</h1>
+
+<!-- Flash message area -->
+<% if (messages && messages.length> 0) { %>
+    <div class="flash">
+        <% messages.forEach(msg=> { %><p>
+                <%= msg %>
+            </p>
+            <% }) %>
+    </div>
+    <% } %>
+
+        <form id="addClassificationForm" action="/inv/add-classification" method="POST" novalidate>
+            <label for="classification_name">Classification Name:</label>
+            <input type="text" id="classification_name" name="classification_name" required pattern="^[A-Za-z0-9]+$"
+                title="No spaces or special characters allowed.">
+            <button type="submit">Add Classification</button>
+        </form>
