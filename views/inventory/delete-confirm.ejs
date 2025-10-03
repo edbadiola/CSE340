@@ -1,0 +1,54 @@
+<main id="delete-inventory">
+  <h1>
+    <%= title || "Delete Inventory Item" %>
+  </h1>
+
+  <p class="alert">Confirm Deletion - The delete is permanent.</p>
+
+  <!-- Flash message -->
+  <% if (messages && messages.length) { %>
+    <div class="flash">
+      <% messages.forEach(m=> { %>
+        <p>
+          <%= m %>
+        </p>
+        <% }) %>
+    </div>
+    <% } %>
+
+      <!-- Server validation errors -->
+      <% if (errors && errors.length) { %>
+        <div class="errors">
+          <ul>
+            <% errors.forEach(err=> { %>
+              <li>
+                <%= err.msg %>
+              </li>
+              <% }) %>
+          </ul>
+        </div>
+        <% } %>
+
+          <form id="DeleteForm" action="/inv/delete" method="POST" novalidate>
+            <!-- Make -->
+            <label for="inv_make">Make</label>
+            <input type="text" id="inv_make" name="inv_make" value="<%= inv_make %>" readonly />
+
+            <!-- Model -->
+            <label for="inv_model">Model</label>
+            <input type="text" id="inv_model" name="inv_model" value="<%= inv_model %>" readonly />
+
+            <!-- Year -->
+            <label for="inv_year">Year</label>
+            <input type="text" id="inv_year" name="inv_year" value="<%= inv_year %>" readonly />
+
+            <!-- Price -->
+            <label for="inv_price">Price</label>
+            <input type="text" id="inv_price" name="inv_price" value="<%= inv_price %>" readonly />
+
+            <!-- Hidden input for inv_id -->
+            <input type="hidden" name="inv_id" value="<%= inv_id %>" />
+
+            <button type="submit" class="button-alert">Delete</button>
+          </form>
+</main>
