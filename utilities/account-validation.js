@@ -81,12 +81,12 @@ validate.checkRegData = async (req, res, next) => {
  * ********************************* */
 validate.loginRules = () => {
   return [
-    body("email")
+    body("account_email")
       .trim()
       .isEmail()
       .normalizeEmail()
       .withMessage("A valid email is required."),
-    body("password")
+    body("account_password")
       .trim()
       .notEmpty()
       .withMessage("Password is required.")
@@ -105,7 +105,7 @@ validate.checkLoginData = async (req, res, next) => {
       title: "Login",
       nav,
       errors,     // pass the error array to the view
-      email       // so the email field stays filled
+      account_email: email || ""    // so the email field stays filled
     })
   }
   next()

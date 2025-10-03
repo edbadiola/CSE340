@@ -26,12 +26,17 @@ router.post(
   utilities.handleErrors(accountController.registerAccount)
 )
 
-// Process the login attempt
+// Process the login request
 router.post(
   "/login",
-  regValidate.loginRules(),         
-  regValidate.checkLoginData,        
-  utilities.handleErrors(accountController.loginAccount) 
+  regValidate.loginRules(),
+  regValidate.checkLoginData,
+  utilities.handleErrors(accountController.accountLogin)
+)
+
+router.get(
+  "/",
+  utilities.handleErrors(accountController.buildAccountManagement)
 )
 
 
