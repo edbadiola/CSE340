@@ -655,3 +655,108 @@
 #add-inventory button:hover {
     background-color: #0056b3;
 }
+
+/* ===========================
+   Inventory Management Dropdown & Table (Nested / Namespaced)
+   =========================== */
+#inv-management {
+    /* Optional: ensure relative positioning */
+    position: relative;
+}
+
+/* Dropdown / select list */
+#inv-management #classification_id {
+    display: block;
+    width: 100%;
+    max-width: 400px;
+    margin: 1rem auto 2rem auto;
+    padding: 0.6rem 1rem;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #fff;
+    color: #333;
+    cursor: pointer;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+#inv-management #classification_id:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 4px rgba(0, 123, 255, 0.5);
+    outline: none;
+}
+
+/* Inventory Table */
+#inv-management #inventoryDisplay {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+    font-family: Arial, sans-serif;
+}
+
+/* Table headers */
+#inv-management #inventoryDisplay th,
+#inv-management #inventoryDisplay td {
+    border: 1px solid #ddd;
+    padding: 0.75rem 1rem;
+    text-align: left;
+}
+
+/* Header styling */
+#inv-management #inventoryDisplay th {
+    background-color: #007bff;
+    color: #fff;
+    font-weight: bold;
+    border-radius: 6px 6px 0 0;
+}
+
+/* Table rows */
+#inv-management #inventoryDisplay tr {
+    transition: background 0.3s, transform 0.2s;
+}
+
+/* Even row background */
+#inv-management #inventoryDisplay tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+/* Hover effect for row */
+#inv-management #inventoryDisplay tr:hover {
+    background-color: #e0e0e0;
+    transform: translateY(-1px);
+}
+
+/* Table links */
+#inv-management #inventoryDisplay a {
+    color: #fdfdfd;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+#inv-management #inventoryDisplay a:hover {
+    text-decoration: underline;
+}
+
+/* Card-like table cells */
+#inv-management #inventoryDisplay td {
+    border-radius: 8px;
+}
+
+#inv-management h2,
+#inv-management p {
+    text-align: center;
+}
+
+/* Responsive tweaks */
+@media (max-width: 768px) {
+
+    #inv-management #inventoryDisplay th,
+    #inv-management #inventoryDisplay td {
+        padding: 0.5rem;
+        font-size: 0.9rem;
+    }
+
+    #inv-management #classification_id {
+        width: 90%;
+    }
+}

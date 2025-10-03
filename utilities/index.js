@@ -135,17 +135,16 @@ function buildVehicleDetail(vehicle) {
  *  Returns <select> HTML ng classifications, may option selected kung meron
  */
 async function buildClassificationList(selectedId = null) {
-  const data = await invModel.getClassifications()
-  let list = `<select name="classification_id" id="classification_id" required>`
-  list += `<option value="">Select a Classification</option>`
+  const data = await invModel.getClassifications();
+  let list = `<option value="">Select a Classification</option>`; // default
   data.rows.forEach(row => {
     list += `<option value="${row.classification_id}"` +
             (row.classification_id == selectedId ? " selected" : "") +
-            `>${row.classification_name}</option>`
-  })
-  list += `</select>`
-  return list
+            `>${row.classification_name}</option>`;
+  });
+  return list;
 }
+
 
 
 /* ****************************************

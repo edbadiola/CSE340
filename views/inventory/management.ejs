@@ -13,4 +13,28 @@
             <p>
                 <a href="/inv/add-inventory">Add New Inventory Item</a>
             </p>
+
+            <h2>Manage Inventory</h2>
+            <p>
+                Select a classification from the list below to see the inventory items that belong to that
+                classification.
+            </p>
+
+            <!-- Classification select list -->
+            <label for="classification_id"></label>
+            <select name="classification_id" id="classification_id">
+                <%- classificationSelect %>
+            </select>
+
+
+            <!-- Empty table for inventory items -->
+            <table id="inventoryDisplay"></table>
+
+            <!-- Message if JavaScript is disabled -->
+            <noscript>
+                JavaScript must be enabled to use this page.
+            </noscript>
+
+            <script src="/js/inventory.js"></script>
 </main>
+
