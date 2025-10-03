@@ -760,3 +760,101 @@
         width: 90%;
     }
 }
+
+
+
+#edit-inventory {
+    max-width: 500px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background: #fcfcfc;
+    border-radius: 10px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.07);
+    font-family: 'Segoe UI', Arial, sans-serif;
+}
+
+#edit-inventory h1 {
+    text-align: center;
+    margin-bottom: 1.2rem;
+    color: #34495e;
+}
+
+#edit-inventory .flash {
+    background: #e8f6ef;
+    color: #23796c;
+    border: 1px solid #b7e4d8;
+    border-radius: 6px;
+    padding: 1em;
+    margin-bottom: 1em;
+    text-align: center;
+    font-size: 1em;
+}
+
+#edit-inventory .errors {
+    background: #ffeaea;
+    color: #be1b1b;
+    border: 1px solid #ffc9c9;
+    border-radius: 6px;
+    padding: 1em;
+    margin-bottom: 1em;
+}
+
+#edit-inventory .errors ul {
+    margin: 0;
+    padding-left: 1.2em;
+}
+
+#edit-inventory form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8em;
+}
+
+#edit-inventory label {
+    font-weight: 600;
+    margin-bottom: 0.2em;
+}
+
+#edit-inventory input[type="text"],
+#edit-inventory input[type="number"],
+#edit-inventory select,
+#edit-inventory textarea {
+    padding: 0.5em;
+    border: 1px solid #d1d5db;
+    border-radius: 5px;
+    font-size: 1em;
+    background: #fff;
+    transition: border 0.2s;
+}
+
+#edit-inventory input:focus,
+#edit-inventory textarea:focus,
+#edit-inventory select:focus {
+    border-color: #3498db;
+    outline: none;
+}
+
+#edit-inventory button[type="submit"] {
+    margin-top: 1em;
+    padding: 0.7em 0;
+    background: #3498db;
+    color: #fff;
+    font-weight: bold;
+    border: none;
+    border-radius: 6px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background 0.2s;
+    opacity: 0.8;
+}
+
+#edit-inventory button[type="submit"]:hover,
+#edit-inventory button[type="submit"]:enabled {
+    background: #217dbb;
+    opacity: 1;
+}
+
+/* Optional: space out the form sections a bit */
+#edit-inventory form>label:not(:first-child) {
+    margin-top: 0.4em;
+}

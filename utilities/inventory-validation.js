@@ -96,9 +96,40 @@ const checkInventoryData = async (req, res, next) => {
   next()
 }
 
+// Errors will be directed back to the edit view.
+const checkUpdateData = async (req, res, next) => {
+  const errors = validationResult(req)
+  if (!errors.isEmpty()) {
+    // Rebuild the classification list with the selected value to keep it sticky
+    const nav = await utilities.getNav()
+    const classificationList = await utilities.buildClassificationList(req.body.classification_id)
+
+    // Render add-inventory view with sticky values and errors
+    return res.render("inventory/edit-inventory", {
+      title: "Edit Inventory",
+      nav,
+      classificationList,
+      inv_id: req.body.inv_id,
+      // pass each input back for stickiness:
+      inv_make: req.body.inv_make,
+      inv_model: req.body.inv_model,
+      inv_year: req.body.inv_year,
+      inv_price: req.body.inv_price,
+      inv_miles: req.body.inv_miles,
+      inv_image: req.body.inv_image,
+      inv_thumbnail: req.body.inv_thumbnail,
+      inv_description: req.body.inv_description,
+      errors: errors.array(),
+      messages: null
+    })
+  }
+  next()
+}
+
 module.exports = {
   classificationRules,
   checkClassificationData,
   inventoryRules,
-  checkInventoryData
+  checkInventoryData,
+  checkUpdateData
 }

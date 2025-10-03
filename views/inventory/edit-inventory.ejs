@@ -1,0 +1,83 @@
+<main id="edit-inventory">
+  <h1><%= title %></h1>
+
+  <!-- Flash message -->
+  <% if (messages && messages.length) { %>
+    <div class="flash">
+      <% messages.forEach(m=> { %>
+        <p><%= m %></p>
+      <% }) %>
+    </div>
+  <% } %>
+
+  <!-- Server validation errors -->
+  <% if (errors && errors.length) { %>
+    <div class="errors">
+      <ul>
+        <% errors.forEach(err=> { %>
+          <li><%= err.msg %></li>
+        <% }) %>
+      </ul>
+    </div>
+  <% } %>
+
+  <form id="updateForm" action="/inv/update" method="POST" novalidate>
+    
+    <label for="classification_id">Classification</label>
+    <select id="classification_id" name="classification_id" required>
+        <%- classificationSelect %>
+    </select>
+
+
+    <!-- Make -->
+    <label for="inv_make">Make</label>
+    <input type="text" id="inv_make" name="inv_make" required
+           value="<%= inv_make %>" />
+
+    <!-- Model -->
+    <label for="inv_model">Model</label>
+    <input type="text" id="inv_model" name="inv_model" required
+           value="<%= inv_model %>" />
+
+    <!-- Year -->
+    <label for="inv_year">Year</label>
+    <input type="text" id="inv_year" name="inv_year" required
+           value="<%= inv_year %>" />
+
+    <!-- Price -->
+    <label for="inv_price">Price</label>
+    <input type="number" id="inv_price" name="inv_price" required
+           value="<%= inv_price %>" />
+
+    <!-- Miles -->
+    <label for="inv_miles">Miles</label>
+    <input type="number" id="inv_miles" name="inv_miles" required
+           value="<%= inv_miles %>" />
+
+    <!-- Color -->
+    <label for="inv_color">Color</label>
+    <input type="text" id="inv_color" name="inv_color" required
+           value="<%= inv_color %>" />
+
+    <!-- Image -->
+    <label for="inv_image">Image Path</label>
+    <input type="text" id="inv_image" name="inv_image"
+           value="<%= inv_image %>" />
+
+    <label for="inv_thumbnail">Thumbnail Path</label>
+    <input type="text" id="inv_thumbnail" name="inv_thumbnail"
+           value="<%= inv_thumbnail %>" />
+
+    <!-- Description -->
+    <label for="inv_description">Description</label>
+    <textarea id="inv_description" name="inv_description" rows="6" required><%= inv_description %></textarea>
+
+    <button type="submit" disabled>Update Vehicle</button>
+
+    <input type="hidden" name="inv_id"
+    <% if(locals.inv_id) { %> value="<%= locals.inv_id %>"
+    <% } %>>
+  </form>
+
+<script src="/js/inv-update.js"></script>
+</main>
