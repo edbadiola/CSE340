@@ -36,6 +36,7 @@ router.post(
 
 router.get(
   "/",
+  utilities.checkLogin,
   utilities.handleErrors(accountController.buildAccountManagement)
 )
 
