@@ -43,8 +43,41 @@ router.get(
   utilities.handleErrors(accountController.buildAccountManagement)
 )
 
+/* ***************
+ *  Update Account View
+ *****************/
+router.get(
+  "/update",
+  utilities.checkLogin,
+  utilities.handleErrors(accountController.buildUpdateAccount)
+)
+
+// Process Account Info Update
+router.post(
+  "/update",
+  utilities.checkLogin,
+  regValidate.updateAccountRules(),
+  regValidate.checkUpdateData,
+  utilities.handleErrors(accountController.updateAccount)
+)
+
+// Process Password Change
+router.post(
+  "/update-password",
+  utilities.checkLogin,
+  regValidate.updatePasswordRules(),
+  regValidate.checkPasswordData,
+  utilities.handleErrors(accountController.updatePassword)
+)
 
 
+/* ***************
+ *  Logout Process
+ * *************** */
+router.get(
+  "/logout",
+  utilities.handleErrors(accountController.logoutAccount)
+)
 
 
 // Export router so server.js can use it

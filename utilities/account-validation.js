@@ -111,5 +111,98 @@ validate.checkLoginData = async (req, res, next) => {
   next()
 }
 
+/* **********************************
+ *  Account Update Validation Rules
+ * ********************************* */
+validate.updateAccountRules = () => {
+  return [
+    body("account_firstname")
+      .trim()
+      .escape()
+      .notEmpty()
+      .withMessage("Please provide a first name."),
+
+    body("account_lastname")
+      .trim()
+      .escape()
+      .notEmpty()
+      .withMessage("Please provide a last name."),
+
+    body("account_email")
+      .trim()
+      .isEmail()
+      .normalizeEmail()
+      .withMessage("A valid email is required.")
+      .custom(async (account_email, { req }) => {
+        // Check if the email already exists, but allow the same one if it's theirs
+        const existingEmail = await accountModel.getAccountByEmail(account_email)
+        if (existingEmail && existingEmail.account_id != req.body.account_id) {
+          throw new Error("That email is already in use.")
+        }
+      })
+  ]
+}
+
+/* **********************************
+ *  Password Update Validation Rules
+ * ********************************* */
+validate.updatePasswordRules = () => {
+  return [
+    body("account_password")
+      .trim()
+      .notEmpty()
+      .isStrongPassword({
+        minLength: 12,
+        minLowercase: 1,
+        minUppercase: 1,
+        minNumbers: 1,
+        minSymbols: 1
+      })
+      .withMessage("Password does not meet requirements.")
+  ]
+}
+
+/* **********************************
+ *  Check Account Update Data
+ * ********************************* */
+validate.checkUpdateData = async (req, res, next) => {
+  const { account_firstname, account_lastname, account_email, account_id } = req.body
+  let errors = validationResult(req)
+  if (!errors.isEmpty()) {
+    let nav = await utilities.getNav()
+    return res.status(400).render("account/update", {
+      title: "Update Account",
+      nav,
+      errors,
+      messages: { error: req.flash("error") },
+      account_id,
+      account_firstname,
+      account_lastname,
+      account_email
+    })
+  }
+  next()
+}
+
+/* **********************************
+ *  Check Password Update Data
+ * ********************************* */
+validate.checkPasswordData = async (req, res, next) => {
+  const { account_id } = req.body
+  let errors = validationResult(req)
+  if (!errors.isEmpty()) {
+    let nav = await utilities.getNav()
+    return res.status(400).render("account/update", {
+      title: "Update Account",
+      nav,
+      errors,
+      messages: { error: req.flash("error") },
+      account_id
+    })
+  }
+  next()
+}
+
+
 
 module.exports = validate

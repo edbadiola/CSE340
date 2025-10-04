@@ -146,10 +146,107 @@ async function buildAccountManagement(req, res) {
   })
 }
 
+/* ****************************************
+*  Deliver Update Account view
+* *************************************** */
+async function buildUpdateAccount(req, res, next) {
+  let nav = await utilities.getNav()
+  const accountData = res.locals.accountData // from JWT middleware
+
+  res.render("account/update", {
+    title: "Update Account",
+    nav,
+    errors: null,
+    messages: {
+      error: req.flash("error"),
+      success: req.flash("success")
+    },
+    account_id: accountData.account_id,
+    account_firstname: accountData.account_firstname,
+    account_lastname: accountData.account_lastname,
+    account_email: accountData.account_email
+  })
+}
+
+/* ****************************************
+*  Process Account Info Update
+* *************************************** */
+async function updateAccount(req, res) {
+  let nav = await utilities.getNav()
+  const { account_id, account_firstname, account_lastname, account_email } = req.body
+
+  try {
+    const result = await accModel.updateAccount(account_id, account_firstname, account_lastname, account_email)
+    if (result) {
+      req.flash("success", "Account information updated successfully.")
+      return res.redirect("/account/")
+    } else {
+      req.flash("error", "Update failed. Please try again.")
+      return res.status(400).render("account/update", {
+        title: "Update Account",
+        nav,
+        errors: null,
+        messages: { error: req.flash("error") },
+        account_id,
+        account_firstname,
+        account_lastname,
+        account_email
+      })
+    }
+  } catch (error) {
+    req.flash("error", "Error updating account.")
+    res.redirect("/account/update")
+  }
+}
+
+/* ****************************************
+*  Process Password Change
+* *************************************** */
+async function updatePassword(req, res) {
+  let nav = await utilities.getNav()
+  const { account_id, account_password } = req.body
+
+  try {
+    const hashedPassword = await bcrypt.hash(account_password, 10)
+    const result = await accModel.updatePassword(account_id, hashedPassword)
+    if (result) {
+      req.flash("success", "Password updated successfully.")
+      return res.redirect("/account/")
+    } else {
+      req.flash("error", "Password update failed.")
+      return res.redirect("/account/update")
+    }
+  } catch (error) {
+    req.flash("error", "Error updating password.")
+    res.redirect("/account/update")
+  }
+}
+
+/* ****************************************
+ *  Logout Process
+ * *************************************** */
+async function logoutAccount(req, res) {
+  // Remove the JWT cookie
+  res.clearCookie("jwt")
+
+  // Optionally, flash a message
+  req.flash("notice", "You have successfully logged out.")
+
+  // Redirect to the home page
+  return res.redirect("/")
+}
+
+
 module.exports = {
   buildLogin,
   buildRegister,
   registerAccount,
   accountLogin,
-  buildAccountManagement
+  buildAccountManagement,
+  buildUpdateAccount,   
+  updateAccount,        
+  updatePassword,
+  logoutAccount
 }
+
+
