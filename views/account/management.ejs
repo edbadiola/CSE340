@@ -1,23 +1,45 @@
-    <main>
-        <h1>Account Management</h1>
+<main>
+    <h1>Account Management</h1>
 
-        <% if (notice && notice.length> 0) { %>
-            <div class="notice">
-                <%= notice %>
-            </div>
-            <% } %>
+    <% if (notice && notice.length> 0) { %>
+        <div class="notice">
+            <%= notice %>
+        </div>
+        <% } %>
 
-                <% if (errors) { %>
-                    <ul>
-                        <% errors.forEach(function(error) { %>
-                            <li>
-                                <%= error.msg %>
-                            </li>
-                            <% }) %>
-                    </ul>
-                    <% } %>
+            <% if (errors) { %>
+                <ul class="errors">
+                    <% errors.forEach(function(error) { %>
+                        <li>
+                            <%= error.msg %>
+                        </li>
+                        <% }) %>
+                </ul>
+                <% } %>
 
-                        <p>You're logged in 🎉</p>
-    </main>
+                    <p>You're logged in 🎉</p>
 
-   
+                    <% if (locals.accountData) { %>
+                        <p><strong>Name:</strong>
+                            <%= locals.accountData.account_firstname %>
+                                <%= locals.accountData.account_lastname %>
+                        </p>
+                        <p><strong>Email:</strong>
+                            <%= locals.accountData.account_email %>
+                        </p>
+                        <p><strong>Account Type:</strong>
+                            <%= locals.accountData.account_type %>
+                        </p>
+
+                        <% if (locals.accountData.account_type==="Employee" || locals.accountData.account_type==="Admin"
+                            ) { %>
+                            <hr>
+                            <h2>Inventory Management</h2>
+                            <ul>
+                                <li><a href="/inv">Manage Inventory</a></li>
+                                <li><a href="/inv/add-classification">Add Classification</a></li>
+                                <li><a href="/inv/add-inventory">Add Vehicle</a></li>
+                            </ul>
+                            <% } %>
+                                <% } %>
+</main>

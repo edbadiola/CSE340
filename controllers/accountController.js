@@ -129,11 +129,20 @@ async function accountLogin(req, res) {
  * ************************************ */
 async function buildAccountManagement(req, res) {
   let nav = await utilities.getNav()
+
+  // ✅ get user data from the JWT (added by utilities.checkJWTToken)
+  const accountData = res.locals.accountData
+
   res.render("account/management", {
     title: "Account Management",
     nav,
     errors: null,
     notice: req.flash("notice"),
+
+    // ✅ pass these to the EJS view
+    account_firstname: accountData.account_firstname,
+    account_type: accountData.account_type,
+    account_id: accountData.account_id
   })
 }
 
