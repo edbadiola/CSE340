@@ -4,77 +4,131 @@ const router = new express.Router()
 const invController = require("../controllers/invController")
 const utilities = require("../utilities/")
 const invValidate = require("../utilities/inventory-validation.js")
+const { checkJWTToken, checkEmployeeOrAdmin } = require("../utilities")
+
+/* ***************
+ * PUBLIC ROUTES
+ * These do NOT require login
+ *****************/
 
 // Route to build inventory by classification view
-router.get("/type/:classificationId", invController.buildByClassificationId);
-
-// routes/inventory.js (What this does: when someone browses ex.- /inventory/detail/5, Express calls invController.buildByInvId)
-router.get("/detail/:inv_id", invController.buildByInvId)
-
-router.get("/trigger-error", invController.triggerError)
-
-// Management view
 router.get(
-  "/",                                   
+  "/type/:classificationId",
+  utilities.handleErrors(invController.buildByClassificationId)
+)
+
+// Route to show vehicle detail view
+router.get(
+  "/detail/:inv_id",
+  utilities.handleErrors(invController.buildByInvId)
+)
+
+// Trigger error (for testing)
+router.get(
+  "/trigger-error",
+  utilities.handleErrors(invController.triggerError)
+)
+
+/* ***************
+ * MANAGEMENT VIEW (Employee/Admin only)
+ *****************/
+
+router.get(
+  "/",
+  checkJWTToken,
+  checkEmployeeOrAdmin,
   utilities.handleErrors(invController.buildManagement)
 )
 
-// Show form
-router.get("/add-classification",
+/* ***************
+ * CLASSIFICATION ROUTES
+ *****************/
+
+// Show add classification form
+router.get(
+  "/add-classification",
+  checkJWTToken,
+  checkEmployeeOrAdmin,
   utilities.handleErrors(invController.buildAddClassification)
 )
 
-// Process form
-router.post("/add-classification",
+// Process add classification form
+router.post(
+  "/add-classification",
+  checkJWTToken,
+  checkEmployeeOrAdmin,
   invValidate.classificationRules(),
   invValidate.checkClassificationData,
   utilities.handleErrors(invController.addClassification)
 )
 
-// show add inventory form
+/* ***************
+ * INVENTORY ROUTES
+ *****************/
+
+// Show add inventory form
 router.get(
   "/add-inventory",
+  checkJWTToken,
+  checkEmployeeOrAdmin,
   utilities.handleErrors(invController.buildAddInventory)
 )
 
-// process add-inventory form
+// Process add inventory form
 router.post(
   "/add-inventory",
+  checkJWTToken,
+  checkEmployeeOrAdmin,
   invValidate.inventoryRules(),
   invValidate.checkInventoryData,
   utilities.handleErrors(invController.addInventory)
 )
 
-// Return inventory items as JSON for a given classification
+// Return inventory items as JSON
 router.get(
   "/getInventory/:classification_id",
   utilities.handleErrors(invController.getInventoryJSON)
-);
+)
 
-// Display a page for editing a specific inventory item.
+// Show edit form
 router.get(
   "/edit/:inv_id",
+  checkJWTToken,
+  checkEmployeeOrAdmin,
   utilities.handleErrors(invController.buildEditInventory)
 )
 
+// Process update
 router.post(
   "/update",
+  checkJWTToken,
+  checkEmployeeOrAdmin,
   invValidate.inventoryRules(),
   invValidate.checkUpdateData,
   utilities.handleErrors(invController.updateInventory)
 )
 
+/* ***************
+ * DELETE ROUTES
+ *****************/
 
 // Show delete confirmation view
 router.get(
   "/delete/:inv_id",
-  utilities.handleErrors(invController.buildDeleteInventory) // You need to implement this controller method
-);
+  checkJWTToken,
+  checkEmployeeOrAdmin,
+  utilities.handleErrors(invController.buildDeleteInventory)
+)
 
-// Handle delete process
+// Process delete
 router.post(
   "/delete",
-  utilities.handleErrors(invController.deleteInventory) // You need to implement this controller method
-);
+  checkJWTToken,
+  checkEmployeeOrAdmin,
+  utilities.handleErrors(invController.deleteInventory)
+)
 
-module.exports = router;
+/* ***************
+ * EXPORT ROUTER
+ *****************/
+module.exports = router

@@ -159,24 +159,20 @@ Util.handleErrors = fn => (req, res, next) => Promise.resolve(fn(req, res, next)
 * Middleware to check token validity
 **************************************** */
 Util.checkJWTToken = (req, res, next) => {
- if (req.cookies.jwt) {
-  jwt.verify(
-   req.cookies.jwt,
-   process.env.ACCESS_TOKEN_SECRET,
-   function (err, accountData) {
-    if (err) {
-     req.flash("Please log in")
-     res.clearCookie("jwt")
-     return res.redirect("/account/login")
-    }
-    res.locals.accountData = accountData
-    res.locals.loggedin = 1
-    next()
-   })
- } else {
-  next()
- }
-}
+  if (req.cookies.jwt) {
+    jwt.verify(req.cookies.jwt, process.env.ACCESS_TOKEN_SECRET, (err, accountData) => {
+      if (err) {
+        res.clearCookie("jwt");
+        return next(); // just ignore invalid token, don’t redirect
+      }
+      res.locals.accountData = accountData;
+      res.locals.loggedin = 1;
+      next();
+    });
+  } else {
+    next(); // no token → still allow access to public routes
+  }
+};
 
 /* ****************************************
  *  Check Login
@@ -190,6 +186,24 @@ Util.checkJWTToken = (req, res, next) => {
   }
  }
 
+Util.checkEmployeeOrAdmin = (req, res, next) => {
+  // Make sure user is logged in
+  if (!res.locals.loggedin || !res.locals.accountData) {
+    req.flash("notice", "You must be logged in to access this page.");
+    return res.redirect("/account/login");
+  }
+
+  const { account_type } = res.locals.accountData;
+
+  if (account_type === "Employee" || account_type === "Admin") {
+    return next(); // allowed
+  } else {
+    req.flash("notice", "You do not have permission to access this page.");
+    return res.redirect("/account/login");
+  }
+};
+
+
 
 module.exports = {
   handleErrors: Util.handleErrors,
@@ -200,5 +214,6 @@ module.exports = {
   buildVehicleDetail,
   buildClassificationList,
   checkJWTToken: Util.checkJWTToken,
-  checkLogin: Util.checkLogin
+  checkLogin: Util.checkLogin,
+  checkEmployeeOrAdmin: Util.checkEmployeeOrAdmin
 }

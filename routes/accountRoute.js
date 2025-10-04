@@ -9,6 +9,8 @@ const utilities = require("../utilities")
 // Account controller (create controllers/accountController.js later)
 const accountController = require("../controllers/accountController")
 
+
+
 /* ***************
  *  GET Login View
  *  Path: /account/login  (the "/account" prefix is added in server.js)
@@ -39,6 +41,9 @@ router.get(
   utilities.checkLogin,
   utilities.handleErrors(accountController.buildAccountManagement)
 )
+
+
+
 
 
 // Export router so server.js can use it
