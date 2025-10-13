@@ -128,6 +128,11 @@ router.post(
   utilities.handleErrors(invController.deleteInventory)
 )
 
+router.get(
+  "/view-all",
+  utilities.handleErrors(invController.buildViewAll))
+
+
 /* ***************
  * EXPORT ROUTER
  *****************/

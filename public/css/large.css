@@ -858,3 +858,105 @@
 #edit-inventory form>label:not(:first-child) {
     margin-top: 0.4em;
 }
+
+/* ===========================
+   All Cars Page (View All)
+   =========================== */
+#all-cars-page {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    font-family: Arial, sans-serif;
+}
+
+/* Title */
+#all-cars-page h1 {
+    text-align: center;
+    color: #0ea5e9;
+    /* Sky blue accent */
+    margin-bottom: 1.5rem;
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+/* Sort Form */
+#all-cars-page form {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+}
+
+#all-cars-page form label {
+    font-weight: bold;
+    color: #333;
+}
+
+#all-cars-page form select {
+    padding: 0.5rem 0.75rem;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+#all-cars-page form select:focus {
+    border-color: #0ea5e9;
+    box-shadow: 0 0 5px rgba(14, 165, 233, 0.3);
+    outline: none;
+}
+
+/* Vehicle List (Single Column) */
+#all-cars-page ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+#all-cars-page li {
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid #e0e0e0;
+    font-size: 1.1rem;
+    color: #222;
+    font-weight: 500;
+    transition: color 0.2s ease, background-color 0.2s ease;
+}
+
+#all-cars-page li:hover {
+    color: #0ea5e9;
+    background-color: #f8fbff;
+}
+
+/* Empty Message */
+#all-cars-page p {
+    text-align: center;
+    font-size: 1.1rem;
+    color: #666;
+    margin-top: 2rem;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    #all-cars-page {
+        padding: 1.5rem;
+    }
+
+    #all-cars-page form {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    #all-cars-page form label {
+        margin-bottom: 0.5rem;
+    }
+
+    #all-cars-page h1 {
+        font-size: 1.6rem;
+    }
+}

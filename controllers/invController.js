@@ -387,4 +387,30 @@ async function deleteInventory(req, res, next) {
 invCont.buildDeleteInventory = buildDeleteInventory;
 invCont.deleteInventory = deleteInventory;
 
+
+/* ***************************
+ *  Build all cars view
+ * ************************** */
+invCont.buildViewAll = async function (req, res, next) {
+  try {
+    const sortBy = req.query.sort || "default"
+    const data = await invModel.getAllCarsSorted(sortBy)
+    const nav = await utilities.getNav()
+
+    res.render("inventory/view-all", {
+      title: "All Cars",
+      nav,
+      vehicles: data.rows,
+      sortBy, 
+      errors: null,
+    })
+  } catch (error) {
+    console.error("Error building View All:", error)
+    next(error)
+  }
+}
+
+
+
+
 module.exports = invCont

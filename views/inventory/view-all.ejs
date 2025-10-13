@@ -1,0 +1,24 @@
+<main id="all-cars-page">
+  <h1>All Cars</h1>
+
+  <form method="get" action="/inv/view-all">
+    <label for="sort">Sort by:</label>
+    <select name="sort" id="sort" onchange="this.form.submit()">
+      <option value="default" <%= sortBy === "default" ? "selected" : "" %>>Default</option>
+      <option value="price_asc" <%= sortBy === "price_asc" ? "selected" : "" %>>Price: Low to High</option>
+      <option value="price_desc" <%= sortBy === "price_desc" ? "selected" : "" %>>Price: High to Low</option>
+      <option value="year_new" <%= sortBy === "year_new" ? "selected" : "" %>>Year: Newest First</option>
+      <option value="year_old" <%= sortBy === "year_old" ? "selected" : "" %>>Year: Oldest First</option>
+    </select>
+  </form>
+
+  <% if (vehicles && vehicles.length > 0) { %>
+    <ul>
+      <% vehicles.forEach(vehicle => { %>
+        <li><%= vehicle.inv_make %> <%= vehicle.inv_model %> - ₱<%= vehicle.inv_price.toLocaleString() %> (<%= vehicle.inv_year %>)</li>
+      <% }) %>
+    </ul>
+  <% } else { %>
+    <p>No vehicles found.</p>
+  <% } %>
+</main>

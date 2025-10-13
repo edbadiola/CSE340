@@ -128,6 +128,44 @@ async function deleteInventory(inv_id) {
   }
 }
 
+/* ***************************
+ *  Get all cars
+ * ************************** */
+async function getAllCars() {
+  try {
+    const data = await pool.query("SELECT * FROM public.inventory ORDER BY inv_make, inv_model")
+    return data.rows
+  } catch (error) {
+    console.error("getAllCars error:", error)
+    throw error
+  }
+}
+
+async function getAllCarsSorted(sortBy) {
+  let orderClause = ""
+
+  switch (sortBy) {
+    case "price_asc":
+      orderClause = "ORDER BY inv_price ASC"
+      break
+    case "price_desc":
+      orderClause = "ORDER BY inv_price DESC"
+      break
+    case "year_new":
+      orderClause = "ORDER BY inv_year DESC"
+      break
+    case "year_old":
+      orderClause = "ORDER BY inv_year ASC"
+      break
+    default:
+      orderClause = "ORDER BY inv_make"
+  }
+
+  return pool.query(`SELECT * FROM public.inventory ${orderClause}`)
+}
+
+
+
 module.exports = {
   getClassifications,
   getInventoryByClassificationId,
@@ -136,5 +174,7 @@ module.exports = {
   insertInventory,
   getInventoryById,
   updateInventory,
-  deleteInventory
+  deleteInventory,
+  getAllCars,
+  getAllCarsSorted
 };
